@@ -1,0 +1,99 @@
+:root {
+  /* Background */
+  --color-bg-base: #000000;
+  --color-bg-deep: #000814;
+  --color-bg-elevated: #0a1628;
+  --color-bg-surface: rgba(10, 22, 40, 0.85);
+  --color-bg-overlay: rgba(0, 8, 20, 0.75);
+
+  /* Accent */
+  --color-accent: #2b59ff;
+  --color-accent-glow: rgba(43, 89, 255, 0.45);
+  --color-accent-soft: rgba(43, 89, 255, 0.15);
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #0f172a;
+
+  /* UI */
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  --color-card-border: rgba(105, 150, 225, 0.24);
+  --color-badge-active: #ffffff;
+  --color-progress-track: rgba(255, 255, 255, 0.2);
+  --color-progress-fill: #ffffff;
+  --color-nav-bg: rgba(15, 23, 42, 0.9);
+  --color-button-muted: rgba(30, 41, 59, 0.8);
+
+  /* Radius */
+  --radius-card: 2rem;
+  --radius-button: 9999px;
+  --radius-nav: 2.5rem;
+
+  /* Spacing */
+  --spacing-page-x: 1.5rem;
+  --spacing-page-y: 1.25rem;
+
+  /* Layout */
+  --max-width-content: 28rem;
+  --max-width-desktop: 72rem;
+  --bottom-nav-height: 6.25rem;
+  --nav-mobile-size: 3.75rem;
+  --nav-home-size: 3.75rem;
+  --nav-secondary-size: 2.5rem;
+  --nav-qr-min-width: 7.75rem;
+
+  /*
+   * Membership card overlay — U-shaped navy cradle + bottom glow.
+   */
+  --card-overlay-height: 100%;
+
+  /* Center vertical fade (bottom → top) */
+  --card-overlay-bottom: #27437a;
+  --card-overlay-lower: rgba(17, 45, 98, 0.92);
+  --card-overlay-mid: rgba(8, 24, 54, 0.82);
+  --card-overlay-upper: rgba(4, 13, 30, 0.46);
+  --card-overlay-fade: transparent;
+  --card-overlay-stop-bottom: 0%;
+  --card-overlay-stop-lower: 14%;
+  --card-overlay-stop-mid: 28%;
+  --card-overlay-stop-upper: 44%;
+  --card-overlay-stop-fade: 64%;
+
+  /* Side pockets — blue extends higher along edges than center */
+  --card-u-side-width: 54%;
+  --card-u-side-height: 82%;
+  --card-u-side-bright: rgba(38, 66, 122, 0.8);
+  --card-u-side-mid: rgba(14, 38, 84, 0.5);
+  --card-u-side-soft: rgba(6, 20, 46, 0.22);
+  --card-u-side-fade: 74%;
+
+  /* Thin luminous rim — bottom + sides, fades as it rises */
+  --card-side-glow-bright: rgba(120, 168, 232, 0.3);
+  --card-side-glow-mid: rgba(70, 124, 202, 0.14);
+  --card-side-glow-soft: rgba(43, 89, 255, 0.02);
+  --card-edge-glow-bright: rgba(145, 188, 238, 0.34);
+  --card-edge-glow-mid: rgba(92, 146, 224, 0.13);
+  --card-edge-glow-soft: rgba(43, 89, 255, 0.02);
+  --card-edge-glow-fade: transparent;
+  --card-edge-stop-bright: 0%;
+  --card-edge-stop-mid: 2%;
+  --card-edge-stop-soft: 6%;
+  --card-edge-stop-fade: 12%;
+  --card-side-glow-width: 24%;
+  --card-side-glow-height: 88%;
+  --card-side-glow-mask-fade-start: 5%;
+  --card-side-glow-mask-fade-mid: 22%;
+  --card-side-glow-mask-fade-soft: 36%;
+  --card-side-glow-mask-fade: 50%;
+
+  /* Subtle top dim on photo for badge legibility */
+  --card-top-vignette: rgba(0, 6, 18, 0.5);
+
+  --card-inset-glow:
+    inset 0 -1px 0 rgba(130, 180, 240, 0.14),
+    inset 1px 0 18px -10px rgba(80, 130, 215, 0.09),
+    inset -1px 0 18px -10px rgba(80, 130, 215, 0.09);
+}

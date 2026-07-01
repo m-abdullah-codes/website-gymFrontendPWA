@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none">
+  <circle cx="22" cy="22" r="22" fill="#0f172a"/>
+  <circle cx="22" cy="22" r="21" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <!-- Weightlifter silhouette -->
+  <circle cx="22" cy="14" r="4" fill="#94a3b8"/>
+  <path d="M16 20c0-2 2.5-3 6-3s6 1 6 3v2h-12v-2z" fill="#94a3b8"/>
+  <rect x="10" y="18" width="6" height="3" rx="1.5" fill="#64748b" transform="rotate(-20 13 19.5)"/>
+  <rect x="28" y="18" width="6" height="3" rx="1.5" fill="#64748b" transform="rotate(20 31 19.5)"/>
+  <rect x="8" y="16" width="4" height="2" rx="1" fill="#475569"/>
+  <rect x="32" y="16" width="4" height="2" rx="1" fill="#475569"/>
+  <path d="M18 24h8v8c0 1.5-1.5 2.5-4 2.5s-4-1-4-2.5v-8z" fill="#64748b"/>
+  <rect x="15" y="30" width="5" height="3" rx="1" fill="#475569"/>
+  <rect x="24" y="30" width="5" height="3" rx="1" fill="#475569"/>
+</svg>

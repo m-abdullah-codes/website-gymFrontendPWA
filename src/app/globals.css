@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --font-sans: var(--font-montserrat);
+
+  --color-surface: var(--color-bg-base);
+  --color-surface-deep: var(--color-bg-deep);
+  --color-surface-elevated: var(--color-bg-elevated);
+  --color-surface-muted: var(--color-button-muted);
+  --color-accent: var(--color-accent);
+  --color-accent-glow: var(--color-accent-glow);
+  --color-ink: var(--color-text-primary);
+  --color-ink-secondary: var(--color-text-secondary);
+  --color-ink-muted: var(--color-text-muted);
+  --color-ink-inverse: var(--color-text-inverse);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-badge: var(--color-badge-active);
+  --color-track: var(--color-progress-track);
+  --color-fill: var(--color-progress-fill);
+
+  --radius-card: var(--radius-card);
+  --radius-nav: var(--radius-nav);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--color-bg-base);
+  background-image:
+    radial-gradient(
+      ellipse 170% 105% at 50% -28%,
+      rgba(43, 89, 255, 0.55) 0%,
+      rgba(43, 89, 255, 0.3) 30%,
+      rgba(43, 89, 255, 0.1) 52%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 90% 50% at 50% -10%,
+      rgba(77, 123, 255, 0.4) 0%,
+      rgba(43, 89, 255, 0.15) 42%,
+      transparent 68%
+    );
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.membership-carousel {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.membership-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.membership-carousel > * {
+  scroll-snap-align: start;
+}
+
+/* Membership card — U-shaped navy cradle */
+.membership-card-overlay {
+  height: var(--card-overlay-height);
+  background:
+    radial-gradient(
+      ellipse var(--card-u-side-width) var(--card-u-side-height) at 0% 100%,
+      var(--card-u-side-bright) 0%,
+      var(--card-u-side-mid) 42%,
+      var(--card-u-side-soft) 62%,
+      transparent var(--card-u-side-fade)
+    ),
+    radial-gradient(
+      ellipse var(--card-u-side-width) var(--card-u-side-height) at 100% 100%,
+      var(--card-u-side-bright) 0%,
+      var(--card-u-side-mid) 42%,
+      var(--card-u-side-soft) 62%,
+      transparent var(--card-u-side-fade)
+    ),
+    linear-gradient(
+      to top,
+      var(--card-overlay-bottom) var(--card-overlay-stop-bottom),
+      var(--card-overlay-lower) var(--card-overlay-stop-lower),
+      var(--card-overlay-mid) var(--card-overlay-stop-mid),
+      var(--card-overlay-upper) var(--card-overlay-stop-upper),
+      var(--card-overlay-fade) var(--card-overlay-stop-fade)
+    );
+}
+
+/* Thin luminous rim — screen-blended so it reads as light, not a flat layer */
+.membership-card-border-glow {
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(
+      to top,
+      var(--card-edge-glow-bright) var(--card-edge-stop-bright),
+      var(--card-edge-glow-mid) var(--card-edge-stop-mid),
+      var(--card-edge-glow-soft) var(--card-edge-stop-soft),
+      var(--card-edge-glow-fade) var(--card-edge-stop-fade)
+    ),
+    radial-gradient(
+      ellipse var(--card-side-glow-width) var(--card-side-glow-height) at 0% 100%,
+      var(--card-side-glow-bright) 0%,
+      var(--card-side-glow-mid) 28%,
+      var(--card-side-glow-soft) 52%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse var(--card-side-glow-width) var(--card-side-glow-height) at 100% 100%,
+      var(--card-side-glow-bright) 0%,
+      var(--card-side-glow-mid) 28%,
+      var(--card-side-glow-soft) 52%,
+      transparent 72%
+    );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgba(0, 0, 0, 0.95) var(--card-side-glow-mask-fade-start),
+    rgba(0, 0, 0, 0.72) var(--card-side-glow-mask-fade-mid),
+    rgba(0, 0, 0, 0.28) var(--card-side-glow-mask-fade-soft),
+    transparent var(--card-side-glow-mask-fade)
+  );
+  mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgba(0, 0, 0, 0.95) var(--card-side-glow-mask-fade-start),
+    rgba(0, 0, 0, 0.72) var(--card-side-glow-mask-fade-mid),
+    rgba(0, 0, 0, 0.28) var(--card-side-glow-mask-fade-soft),
+    transparent var(--card-side-glow-mask-fade)
+  );
+}
+
+.membership-card-top-vignette {
+  background: linear-gradient(
+    to bottom,
+    var(--card-top-vignette) 0%,
+    transparent 38%
+  );
+}
+
+.membership-card-inner {
+  isolation: isolate;
+  box-shadow: var(--card-inset-glow);
+}
