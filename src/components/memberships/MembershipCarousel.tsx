@@ -11,7 +11,12 @@ export function MembershipCarousel({
   className,
 }: MembershipCarouselProps) {
   return (
-    <div className={cn("membership-carousel flex w-full gap-4 overflow-x-auto", className)}>
+    <div
+      className={cn(
+        "membership-carousel flex w-full gap-4 overflow-x-auto",
+        className,
+      )}
+    >
       {memberships.map((membership) => (
         <MembershipCard key={membership.id} membership={membership} />
       ))}

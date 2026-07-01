@@ -34,8 +34,22 @@ export function NavQrIcon({ className }: NavIconProps) {
       className={cn("size-5", className)}
     >
       <rect x="1.5" y="1.5" width="7.5" height="7.5" rx="1.75" fill="#5a5a5a" />
-      <rect x="11" y="1.5" width="7.5" height="7.5" rx="1.75" fill="currentColor" />
-      <rect x="1.5" y="11" width="7.5" height="7.5" rx="1.75" fill="currentColor" />
+      <rect
+        x="11"
+        y="1.5"
+        width="7.5"
+        height="7.5"
+        rx="1.75"
+        fill="currentColor"
+      />
+      <rect
+        x="1.5"
+        y="11"
+        width="7.5"
+        height="7.5"
+        rx="1.75"
+        fill="currentColor"
+      />
       <rect x="11" y="11" width="7.5" height="7.5" rx="1.75" fill="#5a5a5a" />
     </svg>
   );

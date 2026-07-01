@@ -16,7 +16,7 @@ export function BottomNav({ className }: BottomNavProps) {
         className,
       )}
     >
-      <div className="flex w-full min-w-0 max-w-[var(--max-width-content)] items-center justify-between gap-3 md:max-w-lg md:gap-4 md:rounded-[var(--radius-nav)] md:bg-surface-muted/60 md:px-6 md:py-3 md:ring-1 md:ring-border-subtle md:backdrop-blur-xl">
+      <div className="md:bg-surface-muted/60 md:ring-border-subtle flex w-full max-w-[var(--max-width-content)] min-w-0 items-center justify-between gap-3 md:max-w-lg md:gap-4 md:rounded-[var(--radius-nav)] md:px-6 md:py-3 md:ring-1 md:backdrop-blur-xl">
         <div className="flex shrink-0 items-center gap-3 md:gap-4">
           <HomeButton
             aria-current="page"
@@ -35,7 +35,7 @@ export function BottomNav({ className }: BottomNavProps) {
 
         <button
           type="button"
-          className="flex h-[var(--nav-mobile-size)] min-w-0 shrink items-center justify-center gap-2 rounded-[var(--radius-nav)] px-4 ring-1 ring-border-subtle md:h-[var(--nav-secondary-size)] md:min-w-[var(--nav-qr-min-width)] md:px-5"
+          className="ring-border-subtle flex h-[var(--nav-mobile-size)] min-w-0 shrink items-center justify-center gap-2 rounded-[var(--radius-nav)] px-4 ring-1 md:h-[var(--nav-secondary-size)] md:min-w-[var(--nav-qr-min-width)] md:px-5"
         >
           <NavQrIcon className="size-5 shrink-0 text-white md:size-4" />
           <span className="truncate text-sm font-light tracking-wide text-white">

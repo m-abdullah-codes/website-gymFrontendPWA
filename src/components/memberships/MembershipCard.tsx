@@ -68,14 +68,14 @@ export function MembershipCard({ membership, className }: MembershipCardProps) {
         />
 
         {/* Status badge */}
-        <div className="absolute left-4 top-4 z-10">
+        <div className="absolute top-4 left-4 z-10">
           <Badge status={status} />
         </div>
 
         {/* Bottom content */}
-        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-5 pb-5 pt-10">
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-5 pt-10 pb-5">
           <div className="flex items-center gap-2.5">
-            <div className="relative flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-surface-elevated ring-1 ring-border-subtle">
+            <div className="bg-surface-elevated ring-border-subtle relative flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1">
               <Image
                 src={logoSrc}
                 alt=""
@@ -84,21 +84,20 @@ export function MembershipCard({ membership, className }: MembershipCardProps) {
                 className="size-full object-cover"
               />
             </div>
-            <span className="text-[0.8125rem] font-light text-ink-secondary">
+            <span className="text-ink-secondary text-[0.8125rem] font-light">
               {gymName}
             </span>
           </div>
 
-          <h2 className="text-[1.375rem] font-light leading-snug tracking-tight text-ink">
+          <h2 className="text-ink text-[1.375rem] leading-snug font-light tracking-tight">
             {planName}
           </h2>
 
           <ProgressBar value={progressPercent} label="Membership progress" />
 
-          <div className="flex items-center justify-between text-[0.8125rem] text-ink-secondary">
+          <div className="text-ink-secondary flex items-center justify-between text-[0.8125rem]">
             <span>
-              Expires in{" "}
-              <span className="text-ink">{expiresInDays} days</span>
+              Expires in <span className="text-ink">{expiresInDays} days</span>
             </span>
             <span>
               Sessions left <span className="text-ink">{sessionsLeft}</span>

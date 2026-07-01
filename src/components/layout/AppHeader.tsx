@@ -43,11 +43,11 @@ export function AppHeader({
 
         <div className="flex items-center gap-2.5">
           <IconButton aria-label="Calendar" tone="muted">
-            <Calendar className="size-[1.125rem] text-ink" strokeWidth={1.5} />
+            <Calendar className="text-ink size-[1.125rem]" strokeWidth={1.5} />
           </IconButton>
           <IconButton aria-label="Notifications" tone="solid">
             <Bell
-              className="size-[1.125rem] text-ink-inverse"
+              className="text-ink-inverse size-[1.125rem]"
               strokeWidth={1.75}
             />
           </IconButton>
@@ -56,10 +56,10 @@ export function AppHeader({
 
       {showTitle && (
         <div className="flex flex-col gap-1.5">
-          <h1 className="text-[2rem] font-light leading-[1.1] tracking-tight text-ink md:text-[3.25rem]">
+          <h1 className="text-ink text-[2rem] leading-[1.1] font-light tracking-tight md:text-[3.25rem]">
             {title}
           </h1>
-          <p className="text-[0.9375rem] font-light text-ink-secondary md:text-base">
+          <p className="text-ink-secondary text-[0.9375rem] font-light md:text-base">
             {subtitle}
           </p>
         </div>
