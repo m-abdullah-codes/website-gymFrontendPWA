@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { IconButton } from "@/components/ui/IconButton";
 import { HomeButton } from "./HomeButton";
 import { NavProfileIcon, NavQrIcon } from "./NavIcons";
 
@@ -22,13 +23,14 @@ export function BottomNav({ className }: BottomNavProps) {
             className="size-[var(--nav-mobile-size)] md:size-[var(--nav-home-size)]"
           />
 
-          <button
-            type="button"
+          <IconButton
             aria-label="Profile"
-            className="flex size-[var(--nav-mobile-size)] shrink-0 items-center justify-center rounded-full ring-1 ring-border-subtle md:size-[var(--nav-home-size)]"
+            tone="outline"
+            size="md"
+            className="md:size-[var(--nav-home-size)]"
           >
             <NavProfileIcon className="size-[42%] text-white" />
-          </button>
+          </IconButton>
         </div>
 
         <button

@@ -1,20 +1,35 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { Calendar, Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { IconButton } from "@/components/ui/IconButton";
 
 interface AppHeaderProps {
   className?: string;
   showTitle?: boolean;
+  title?: ReactNode;
+  subtitle?: ReactNode;
 }
 
-export function AppHeader({ className, showTitle = true }: AppHeaderProps) {
+export function AppHeader({
+  className,
+  showTitle = true,
+  title = (
+    <>
+      Your
+      <br />
+      memberships
+    </>
+  ),
+  subtitle = "View your memberships here.",
+}: AppHeaderProps) {
   return (
     <header className={cn("flex flex-col gap-6", className)}>
       <div className="flex items-center justify-between">
-        <button
-          type="button"
+        <IconButton
           aria-label="Profile"
-          className="relative flex size-[var(--nav-secondary-size)] shrink-0 items-center justify-center overflow-hidden rounded-full bg-surface-elevated ring-1 ring-border-subtle"
+          tone="subtle"
+          className="relative overflow-hidden"
         >
           <Image
             src="/images/profile-avatar.svg"
@@ -24,35 +39,28 @@ export function AppHeader({ className, showTitle = true }: AppHeaderProps) {
             className="size-full object-cover"
             priority
           />
-        </button>
+        </IconButton>
 
         <div className="flex items-center gap-2.5">
-          <button
-            type="button"
-            aria-label="Calendar"
-            className="flex size-[var(--nav-secondary-size)] items-center justify-center rounded-full bg-surface-muted ring-1 ring-border-subtle backdrop-blur-sm"
-          >
+          <IconButton aria-label="Calendar" tone="muted">
             <Calendar className="size-[1.125rem] text-ink" strokeWidth={1.5} />
-          </button>
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="flex size-[var(--nav-secondary-size)] items-center justify-center rounded-full bg-ink shadow-lg"
-          >
-            <Bell className="size-[1.125rem] text-ink-inverse" strokeWidth={1.75} />
-          </button>
+          </IconButton>
+          <IconButton aria-label="Notifications" tone="solid">
+            <Bell
+              className="size-[1.125rem] text-ink-inverse"
+              strokeWidth={1.75}
+            />
+          </IconButton>
         </div>
       </div>
 
       {showTitle && (
         <div className="flex flex-col gap-1.5">
           <h1 className="text-[2rem] font-light leading-[1.1] tracking-tight text-ink md:text-[3.25rem]">
-            Your
-            <br />
-            memberships
+            {title}
           </h1>
           <p className="text-[0.9375rem] font-light text-ink-secondary md:text-base">
-            View your memberships here.
+            {subtitle}
           </p>
         </div>
       )}

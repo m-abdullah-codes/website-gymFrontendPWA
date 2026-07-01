@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/Badge";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 
 export interface Membership {
   id: string;
@@ -66,13 +68,9 @@ export function MembershipCard({ membership, className }: MembershipCardProps) {
         />
 
         {/* Status badge */}
-        {status === "active" && (
-          <div className="absolute left-4 top-4 z-10">
-            <span className="inline-flex items-center gap-1 rounded-full bg-badge px-3.5 py-1.5 text-[0.8125rem] font-light text-ink-inverse shadow-sm">
-              Active <span aria-hidden>🔥</span>
-            </span>
-          </div>
-        )}
+        <div className="absolute left-4 top-4 z-10">
+          <Badge status={status} />
+        </div>
 
         {/* Bottom content */}
         <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-5 pb-5 pt-10">
@@ -95,19 +93,7 @@ export function MembershipCard({ membership, className }: MembershipCardProps) {
             {planName}
           </h2>
 
-          <div
-            role="progressbar"
-            aria-valuenow={progressPercent}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label="Membership progress"
-            className="h-[3px] w-full overflow-hidden rounded-full bg-track"
-          >
-            <div
-              className="h-full rounded-full bg-fill transition-all duration-500"
-              style={{ width: `${progressPercent}%` }}
-            />
-          </div>
+          <ProgressBar value={progressPercent} label="Membership progress" />
 
           <div className="flex items-center justify-between text-[0.8125rem] text-ink-secondary">
             <span>

@@ -16,7 +16,7 @@ export function AppShell({ children, className }: AppShellProps) {
           className,
         )}
       >
-        <AppHeader showTitle={false} className="mb-6 md:mb-8" />
+        <AppHeader showTitle className="mb-6 md:mb-8" />
         <main className="flex min-h-0 min-w-0 flex-1 flex-col justify-center">
           {children}
         </main>
