@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
+import { PwaInstallPrompt } from "@/components/pwa/PwaInstallPrompt";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -35,7 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} h-full`}>
-      <body className="min-h-full font-light">{children}</body>
+      <body className="min-h-full font-light">
+        {children}
+        <PwaInstallPrompt />
+      </body>
     </html>
   );
 }
