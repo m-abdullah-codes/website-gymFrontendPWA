@@ -1,48 +1,155 @@
+"use client";
+
+import { useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { StartWorkoutDialog } from "@/components/workout/StartWorkoutDialog";
+import {
+  Dumbbell,
+  PersonStanding,
+  Play,
+  Trophy,
+  UtensilsCrossed,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { IconButton } from "@/components/ui/IconButton";
-import { HomeButton } from "./HomeButton";
-import { NavProfileIcon, NavQrIcon } from "./NavIcons";
+import { BOTTOM_NAV_SHAPE_HEIGHT, buildBottomNavPath } from "./bottomNavShape";
+import styles from "./BottomNav.module.css";
 
 interface BottomNavProps {
   className?: string;
 }
 
-export function BottomNav({ className }: BottomNavProps) {
-  return (
-    <nav
-      aria-label="Main navigation"
-      className={cn(
-        "fixed inset-x-0 bottom-0 z-50 flex justify-center overflow-x-hidden px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] md:px-8",
-        className,
-      )}
-    >
-      <div className="md:bg-surface-muted/60 md:ring-border-subtle flex w-full max-w-[var(--max-width-content)] min-w-0 items-center justify-between gap-3 md:max-w-lg md:gap-4 md:rounded-[var(--radius-nav)] md:px-6 md:py-3 md:ring-1 md:backdrop-blur-xl">
-        <div className="flex shrink-0 items-center gap-3 md:gap-4">
-          <HomeButton
-            aria-current="page"
-            className="size-[var(--nav-mobile-size)] md:size-[var(--nav-home-size)]"
-          />
+type NavItem = {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+  match: (pathname: string) => boolean;
+};
 
-          <IconButton
-            aria-label="Profile"
-            tone="outline"
-            size="md"
-            className="md:size-[var(--nav-home-size)]"
-          >
-            <NavProfileIcon className="size-[42%] text-white" />
-          </IconButton>
+const NAV_ITEMS: NavItem[] = [
+  {
+    href: "/home",
+    label: "Workout",
+    icon: Dumbbell,
+    match: (pathname) => pathname === "/home",
+  },
+  {
+    href: "/body",
+    label: "Body",
+    icon: PersonStanding,
+    match: (pathname) => pathname.startsWith("/body"),
+  },
+  {
+    href: "/meals",
+    label: "Meals",
+    icon: UtensilsCrossed,
+    match: (pathname) => pathname.startsWith("/meals"),
+  },
+  {
+    href: "/leaderboard",
+    label: "Ranks",
+    icon: Trophy,
+    match: (pathname) => pathname.startsWith("/leaderboard"),
+  },
+];
+
+function NavItemLink({ item, active }: { item: NavItem; active: boolean }) {
+  const Icon = item.icon;
+
+  return (
+    <Link
+      href={item.href}
+      className={cn(styles.item, active && styles.itemActive)}
+      aria-label={item.label}
+      aria-current={active ? "page" : undefined}
+    >
+      <Icon className={styles.itemIcon} strokeWidth={active ? 2.25 : 1.85} />
+      <span className={styles.itemLabel} aria-hidden>
+        {item.label}
+      </span>
+    </Link>
+  );
+}
+
+export function BottomNav({ className }: BottomNavProps) {
+  const pathname = usePathname();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [trackWidth, setTrackWidth] = useState<number | null>(null);
+  const [startOpen, setStartOpen] = useState(false);
+
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setTrackWidth(Math.round(entry.contentRect.width));
+    });
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, []);
+
+  const barPath = trackWidth ? buildBottomNavPath(trackWidth) : null;
+  const viewBox = `0 0 ${trackWidth ?? 0} ${BOTTOM_NAV_SHAPE_HEIGHT}`;
+
+  const [workout, body, meals, leaderboard] = NAV_ITEMS;
+
+  return (
+    <nav aria-label="Main navigation" className={cn(styles.shell, className)}>
+      <div ref={trackRef} className={styles.track}>
+        {barPath ? (
+          <svg className={styles.shapeLayer} viewBox={viewBox} aria-hidden>
+            <path className={styles.shapeShadow} d={barPath} />
+          </svg>
+        ) : null}
+
+        <div
+          className={styles.glass}
+          style={barPath ? { clipPath: `path("${barPath}")` } : undefined}
+        />
+
+        {barPath ? (
+          <svg className={styles.shapeLayer} viewBox={viewBox} aria-hidden>
+            <defs>
+              <linearGradient id="bottomNavEdge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="rgba(255, 255, 255, 0.55)" />
+                <stop offset="0.35" stopColor="rgba(255, 255, 255, 0.14)" />
+                <stop offset="1" stopColor="rgba(255, 255, 255, 0.05)" />
+              </linearGradient>
+            </defs>
+            <path
+              d={barPath}
+              fill="none"
+              stroke="url(#bottomNavEdge)"
+              strokeWidth="1.25"
+            />
+          </svg>
+        ) : null}
+
+        <div className={styles.itemsRow}>
+          <NavItemLink item={workout} active={workout.match(pathname)} />
+          <NavItemLink item={body} active={body.match(pathname)} />
+          <span className={styles.centerSpacer} aria-hidden />
+          <NavItemLink item={meals} active={meals.match(pathname)} />
+          <NavItemLink
+            item={leaderboard}
+            active={leaderboard.match(pathname)}
+          />
         </div>
 
         <button
           type="button"
-          className="ring-border-subtle flex h-[var(--nav-mobile-size)] min-w-0 shrink items-center justify-center gap-2 rounded-[var(--radius-nav)] px-4 ring-1 md:h-[var(--nav-secondary-size)] md:min-w-[var(--nav-qr-min-width)] md:px-5"
+          onClick={() => setStartOpen(true)}
+          className={styles.fab}
+          aria-label="Start today's workout"
         >
-          <NavQrIcon className="size-5 shrink-0 text-white md:size-4" />
-          <span className="truncate text-sm font-light tracking-wide text-white">
-            QR Code
-          </span>
+          <Play className={styles.fabIcon} strokeWidth={0} />
         </button>
       </div>
+
+      <StartWorkoutDialog
+        open={startOpen}
+        onClose={() => setStartOpen(false)}
+      />
     </nav>
   );
 }

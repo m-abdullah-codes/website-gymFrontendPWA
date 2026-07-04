@@ -6,6 +6,7 @@ export const buttonBaseClassName =
 
 export const buttonVariants = {
   primary: "bg-white text-ink-inverse shadow-[0_8px_24px_rgba(0,0,0,0.25)]",
+  accent: "bg-accent text-white shadow-[0_8px_24px_var(--color-accent-glow)]",
 } as const;
 
 export type ButtonVariant = keyof typeof buttonVariants;

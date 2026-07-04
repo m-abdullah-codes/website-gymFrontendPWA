@@ -23,6 +23,56 @@
   --radius-nav: var(--radius-nav);
 }
 
+/* Onboarding top aurora — color-morph loops (blue → purple → pink). */
+@theme {
+  --animate-onboarding-aurora-a: onboarding-aurora-a 16s ease-in-out infinite;
+  --animate-onboarding-aurora-b: onboarding-aurora-b 20s ease-in-out infinite;
+
+  @keyframes onboarding-aurora-a {
+    0%,
+    100% {
+      background-color: #2b59ff;
+      opacity: 0.42;
+      transform: translate3d(-50%, 0, 0) scale(1);
+    }
+    33% {
+      background-color: #8b5cf6;
+      opacity: 0.48;
+      transform: translate3d(-50%, 0, 0) scale(1.06);
+    }
+    66% {
+      background-color: #ec4899;
+      opacity: 0.4;
+      transform: translate3d(-50%, 0, 0) scale(1.03);
+    }
+  }
+
+  @keyframes onboarding-aurora-b {
+    0%,
+    100% {
+      background-color: #4d7bff;
+      opacity: 0.32;
+    }
+    40% {
+      background-color: #a855f7;
+      opacity: 0.38;
+    }
+    70% {
+      background-color: #f472b6;
+      opacity: 0.3;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-onboarding-aurora-a,
+  .animate-onboarding-aurora-b {
+    animation: none;
+    background-color: #2b59ff;
+    opacity: 0.35;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -31,15 +81,27 @@
 
 html {
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
   min-height: 100%;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image:
     radial-gradient(
       ellipse 170% 105% at 50% -28%,
@@ -54,11 +116,6 @@ body {
       rgba(43, 89, 255, 0.15) 42%,
       transparent 68%
     );
-  background-attachment: fixed;
-  color: var(--color-text-primary);
-  font-family: var(--font-montserrat), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .membership-carousel {

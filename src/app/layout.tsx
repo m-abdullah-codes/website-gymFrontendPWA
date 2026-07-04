@@ -12,6 +12,14 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Gym App",
   description: "Your gym memberships and fitness journey",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Gym App",
+  },
+  icons: {
+    apple: "/icons/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
